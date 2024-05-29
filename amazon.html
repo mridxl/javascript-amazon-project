@@ -55,6 +55,8 @@
     <div class="products-grid"></div>
   </div>
 
+  <!-- The order here matters as these scripts are loaded one by one. Amazon.js can use 'products' array present in products.js -->
+  <script src="data/products.js"></script>
   <script src="scripts/amazon.js"></script>
 </body>
 

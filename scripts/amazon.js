@@ -46,8 +46,9 @@ products.forEach((product) => {
                 <img src="images/icons/checkmark.png">
                 Added
             </div>
-
-            <button class="add-to-cart-button button-primary">
+            <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${
+							product.id
+						}">
                 Add to Cart
             </button>
             </div>
@@ -56,3 +57,29 @@ products.forEach((product) => {
 });
 
 document.querySelector('.products-grid').innerHTML = productContainerHtml;
+
+//add to cart functionality
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+	button.addEventListener('click', () => {
+		// added data attribute to all buttons and get data using dataset
+
+        //dataset.productId: kebab-case in data ttribute in html is converted to camelCase in js
+		const productId = button.dataset.productId;
+
+		// check if a product is already in cart
+		let matchingItem;
+
+		cart.forEach((item) => {
+			if (productId === item.productId) matchingItem = item;
+		});
+
+		if (matchingItem) {
+			matchingItem.quantity++;
+		} else {
+			cart.push({
+				productId: productId,
+				quantity: 1,
+			});
+		}
+	});
+});

@@ -1,3 +1,6 @@
+import { cart, addToCart } from '../data/cart.js';
+import { products } from '../data/products.js';
+
 // displaying products:
 let productContainerHtml = '';
 
@@ -58,40 +61,22 @@ products.forEach((product) => {
 
 document.querySelector('.products-grid').innerHTML = productContainerHtml;
 
+function updateCartQuantity() {
+	// updates cart quantity:
+	let cartQuantity = 0;
+	cart.forEach((cartItem) => {
+		cartQuantity += cartItem.quantity;
+	});
+	document.querySelector('.cart-quantity').innerHTML = cartQuantity;
+}
+
 //add to cart functionality
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 	button.addEventListener('click', () => {
 		/* Added data attribute to all buttons and get data using dataset
 		-> dataset.productId: kebab-case in data ttribute in html is converted to camelCase in js*/
-		const productId = button.dataset.productId;
-
-		// check if a product is already in cart
-		let matchingItem;
-		cart.forEach((item) => {
-			if (productId === item.productId) matchingItem = item;
-		});
-
-		// adding products to cart, making use of the qty selector
-		const selectButton = document.querySelector(
-			`.js-quantity-selector-${productId}`
-		);
-
-		const quantity = Number(selectButton.value);
-
-		if (matchingItem) {
-			matchingItem.quantity += quantity;
-		} else {
-			cart.push({
-				productId,
-				quantity,
-			});
-		}
-
-		// updates cart quantity:
-		let cartQuantity = 0;
-		cart.forEach((item) => {
-			cartQuantity += item.quantity;
-		});
-		document.querySelector('.cart-quantity').innerHTML = cartQuantity;
+		const { productId } = button.dataset;
+		addToCart(productId);
+		updateCartQuantity();
 	});
 });

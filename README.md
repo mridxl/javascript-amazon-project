@@ -1,6 +1,6 @@
 # Amazon Clone Project
 
-This project is an Amazon clone built using HTML, CSS, and JavaScript. JavaScript is seamlessly integrated to dynamically fetch and display product information, manage the shopping cart with real-time updates, and enhance the checkout process by validating inputs and handling order submissions
+This project is an Amazon clone built using HTML, CSS, and JavaScript. JavaScript is seamlessly integrated to dynamically fetch and display product information, manage the shopping cart with real-time updates, and enhance the checkout process by validating inputs and handling order submissions. Part of the amazing [JavaScript Tutorial Full Course - Beginner to Pro (2024)](https://www.youtube.com/watch?v=EerdGm-ehJQ) by [Simon Bao](https://github.com/SuperSimpleDev)
 
 ## Features
 

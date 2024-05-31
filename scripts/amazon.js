@@ -26,7 +26,7 @@ products.forEach((product) => {
             </div>
 
             <div class="product-price">
-                ${formatCurrency(product.priceCents)}
+                $${formatCurrency(product.priceCents)}
             </div>
 
             <div class="product-quantity-container">
@@ -46,7 +46,7 @@ products.forEach((product) => {
 
             <div class="product-spacer"></div>
 
-            <div class="added-to-cart">
+            <div class="added-to-cart js-${product.id}-added">
                 <img src="images/icons/checkmark.png">
                 Added
             </div>
@@ -79,5 +79,26 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
 		const { productId } = button.dataset;
 		addToCart(productId);
 		updateCartQuantity();
+		showItemAdded(productId);
 	});
 });
+
+const addedTimeoutId = [];
+function showItemAdded(productId) {
+	const addedItem = document.querySelector(`.js-${productId}-added`);
+	addedItem.classList.add('added');
+
+	// Check if a previous timeoutId exists. If it does,
+	// we will stop it.
+	const prevId = addedTimeoutId[productId];
+	if (prevId) {
+		clearTimeout(prevId);
+	}
+	//set new timeout
+	const timeoutId = setTimeout(() => {
+		addedItem.classList.remove('added');
+	}, 2000);
+
+	//save timeoutId
+	addedTimeoutId[productId] = timeoutId;
+}

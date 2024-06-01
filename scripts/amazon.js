@@ -64,7 +64,7 @@ updateCartQuantity();
 
 document.querySelector('.products-grid').innerHTML = productContainerHtml;
 
-function updateCartQuantity() {
+export function updateCartQuantity() {
 	// updates cart quantity:
 	let cartQuantity = 0;
 	cart.forEach((cartItem) => {

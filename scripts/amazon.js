@@ -59,6 +59,8 @@ products.forEach((product) => {
     `;
 	productContainerHtml += html;
 });
+//updates cart quantity everytime amazon.html is loaded
+updateCartQuantity();
 
 document.querySelector('.products-grid').innerHTML = productContainerHtml;
 

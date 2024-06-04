@@ -5,10 +5,12 @@ if (!cart) {
 		{
 			productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
 			quantity: 2,
+			deliveryOptionId: '1',
 		},
 		{
 			productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
 			quantity: 1,
+			deliveryOptionId: '2',
 		},
 	];
 }
@@ -29,6 +31,7 @@ export function addToCart(productId) {
 	);
 
 	const quantity = Number(selectButton.value);
+	const deliveryOptionId = '1';
 
 	if (matchingItem) {
 		matchingItem.quantity += quantity;
@@ -36,11 +39,13 @@ export function addToCart(productId) {
 		cart.push({
 			productId,
 			quantity,
+			deliveryOptionId,
 		});
 	}
 
 	savetoStorage();
 }
+
 export function updateCart(productId, newQuantity) {
 	// check if a product is already in cart
 	let matchingItem;
@@ -52,6 +57,7 @@ export function updateCart(productId, newQuantity) {
 	matchingItem.quantity = newQuantity;
 	savetoStorage();
 }
+
 export function removeFromCart(productId) {
 	const newCart = [];
 	cart.forEach((cartItem) => {
@@ -60,6 +66,7 @@ export function removeFromCart(productId) {
 	cart = newCart;
 	savetoStorage();
 }
+
 export function calculateCartQuantity() {
 	// calculates cart quantity:
 	let cartQuantity = 0;
@@ -67,4 +74,13 @@ export function calculateCartQuantity() {
 		cartQuantity += cartItem.quantity;
 	});
 	return cartQuantity;
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+	// update delivery option
+	const matchingItem = cart.find(
+		(cartItem) => cartItem.productId === productId
+	);
+	matchingItem.deliveryOptionId = deliveryOptionId;
+	savetoStorage();
 }

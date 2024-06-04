@@ -41,6 +41,17 @@ export function addToCart(productId) {
 
 	savetoStorage();
 }
+export function updateCart(productId, newQuantity) {
+	// check if a product is already in cart
+	let matchingItem;
+	cart.forEach((cartItem) => {
+		if (productId === cartItem.productId) matchingItem = cartItem;
+	});
+
+	// updating products in cart
+	matchingItem.quantity = newQuantity;
+	savetoStorage();
+}
 export function removeFromCart(productId) {
 	const newCart = [];
 	cart.forEach((cartItem) => {

@@ -133,7 +133,10 @@
 .is-editing-quantity .save-quantity-link {
   display: initial;
 }
-
+.is-editing-quantity .save-quantity-link{
+  color: rgb(1, 124, 182);
+  cursor: pointer;
+}
 .is-editing-quantity .update-quantity-link,
 .is-editing-quantity .quantity-label {
   display: none;

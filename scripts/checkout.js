@@ -46,12 +46,11 @@ cart.forEach((cartItem) => {
 								}">
                   Update
                 </span>
-                <input class="quantity-input update-qty-${matchingProduct.id}">
-                <span class="save-quantity-link link-primary" data-product-id="${
+                <input class="quantity-input  update-qty-${matchingProduct.id}" 
+                data-product-id="${matchingProduct.id}">
+                <span class="save-quantity-link link-primary save-${
 									matchingProduct.id
-								}">
-                  Save
-                </span>
+								}" data-product-id="${matchingProduct.id}">Save</span>
                 <span class="delete-quantity-link link-primary" data-product-id="${
 									matchingProduct.id
 								}">
@@ -140,6 +139,15 @@ document.querySelectorAll('.update-quantity-link').forEach((updateLink) => {
 	});
 });
 
+document.querySelectorAll('.quantity-input').forEach((qtyInput) => {
+	qtyInput.addEventListener('keydown', (event) => {
+		if (event.key === 'Enter') {
+			const { productId } = qtyInput.dataset;
+			document.querySelector(`.save-${productId}`).click();
+		}
+	});
+});
+
 document.querySelectorAll('.save-quantity-link').forEach((saveLink) => {
 	saveLink.addEventListener('click', () => {
 		const { productId } = saveLink.dataset;
@@ -149,12 +157,14 @@ document.querySelectorAll('.save-quantity-link').forEach((saveLink) => {
 			document.querySelector(`.update-qty-${productId}`).value
 		);
 
-		if (newQty > 0) {
+		if (newQty > 0 && newQty <= 1000) {
 			updateCart(productId, newQty);
 			document.querySelector(`.quantity-${productId}`).innerHTML = `${newQty}`;
 
 			itemContainer.classList.remove('is-editing-quantity');
 			checkoutQty();
+		} else {
+      alert('Quantity must be between 1 and 999');
 		}
 	});
 });

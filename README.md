@@ -23,6 +23,7 @@ This project is an Amazon clone built using HTML, CSS, and JavaScript. JavaScrip
 │   └── products.json
 ├── data
 │   └── cart.js
+│   └── deliveryOptions.js
 │   └── products.js
 ├── images
 │   └── icons
@@ -30,6 +31,9 @@ This project is an Amazon clone built using HTML, CSS, and JavaScript. JavaScrip
 │   └── ratings
 ├── scripts
 │   └── utils
+│   └── checkout
+│     ├── orderSummaru.js
+│     ├── paymentSummary.js
 │   ├── amazon.js
 │   ├── checkout.js
 ├── styles
@@ -37,8 +41,6 @@ This project is an Amazon clone built using HTML, CSS, and JavaScript. JavaScrip
 │   └── shared
 ├── amazon.html
 ├── checkout.html
-├── orders.html
-└── tracking.html
 ```
 
 - **backend/**: Contains server-side code.
@@ -48,8 +50,6 @@ This project is an Amazon clone built using HTML, CSS, and JavaScript. JavaScrip
 - **styles/**: Contains CSS files for styling the project.
 - **amazon.html**: Main HTML file for the Amazon clone.
 - **checkout.html**: HTML file for the checkout page.
-- **orders.html**: HTML file for the orders page.
-- **tracking.html**: HTML file for the order tracking page.
 
 ## Getting Started
 
